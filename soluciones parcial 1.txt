@@ -1,0 +1,62 @@
+#######################################################################################################################################
+# Teoría
+
+1. a)
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+2. WHERE sirve para filtrar los datos antes de hacer cualquier cálculo, es decir, revisa y selecciona fila por fila.
+HAVING se usa después de que ya se han hecho esos cálculos, como sumar o promediar, para filtrar los resultados finales.
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+3. c)
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+4. a)
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+5. Es una metafora para enseñar los pasos para realizar un proceso en git, primero es la preparación(el avión iniciando su proceso de vuelo), la siguiente parte es que cuando ya tienes tus cambios preparadosy el commit seria como estar en la pista pero no se han enviado los cambios. Y el push es cuando enviamos los cambios al repositorio remoto.
+#######################################################################################################################################
+# Práctica
+
+1.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT AVG(edad) 
+FROM alumnos
+WHERE apellido 
+LIKE '%ez';
+
+```
+
+2.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT alumn.nombre, alumn.apellido, MAX(cal.calificacion) AS Calificacion_maxima
+FROM alumnos AS alumn
+LEFT JOIN calificaciones AS cal 
+ON alumn.expediente = cal.expediente
+WHERE cal.calificacion IS NOT NULL
+GROUP BY alumn.expediente, alumn.nombre, alumn.apellido;
+
+```
+
+3.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT alumn.nombre, alumn.apellido, cal.nombre_materia, cal.calificacion
+FROM calificaciones AS cal
+INNER JOIN alumnos AS alumn
+USING(expediente)
+WHERE cal.calificacion > (
+    SELECT AVG(calificacion)
+    FROM calificaciones
+    WHERE calificacion IS NOT NULL
+);
+
+```
